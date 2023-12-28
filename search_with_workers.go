@@ -2,7 +2,7 @@
  * @Author: LinkyPi trouble.linky@gmail.com
  * @Date: 2023-12-27 14:31:39
  * @LastEditors: LinkyPi trouble.linky@gmail.com
- * @LastEditTime: 2023-12-28 08:56:55
+ * @LastEditTime: 2023-12-28 09:17:35
  * @FilePath: /test/search.go
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,53 +14,6 @@ import (
 	"sync"
 	"time"
 )
-
-func main_test() {
-
-	var wgroup sync.WaitGroup
-
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-	defer cancel()
-
-	wgroup.Add(10)
-	result := make(chan int)
-
-	for i := 0; i < 10; i++ {
-		go FindEle2(&wgroup, ctx, result, i, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 14, 16}, 16)
-	}
-
-	wgroup.Wait()
-	fmt.Println("done..")
-
-}
-
-func FindEle2(wgroup *sync.WaitGroup, ctx context.Context,
-	result chan int, index int, replica []int, target int) {
-
-	fmt.Printf("worker: %d starting, replica slice len: %d .\n", index, len(replica))
-
-	// wgroup.Add(1)
-
-	defer func() {
-		wgroup.Done()
-		fmt.Printf("worker %d wait done.\n", index)
-	}()
-
-	for _, v := range replica {
-		select {
-		case <-ctx.Done():
-			fmt.Printf("goroutine %d search cancel...\n", index)
-			return
-		default:
-			if v == target {
-				result <- index
-				fmt.Printf("goroutine %d found it. \n", index)
-				return
-			}
-		}
-	}
-	fmt.Printf("%s goroutine %d exit. \n", time.Now(), index)
-}
 
 func main() {
 	// 在一万个随机数集合中查找相关元素
