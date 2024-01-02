@@ -1,8 +1,5 @@
 {
     "workbench.colorCustomizations": {
         "tab.unfocusedActiveBorder": "#fff0"
-    },
-    "go.delveConfig":{
-        "debugAdapter":"legacy"
     }
 }
