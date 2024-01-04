@@ -1,5 +1,8 @@
 {
     "workbench.colorCustomizations": {
         "tab.unfocusedActiveBorder": "#fff0"
-    }
+    },
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.lineHeight": 1.2,
+    "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace, consola"
 }

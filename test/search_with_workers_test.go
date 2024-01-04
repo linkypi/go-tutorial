@@ -2,7 +2,7 @@
  * @Author: LinkyPi trouble.linky@gmail.com
  * @Date: 2023-12-27 14:31:39
  * @LastEditors: LinkyPi trouble.linky@gmail.com
- * @LastEditTime: 2023-12-28 18:32:25
+ * @LastEditTime: 2024-01-04 16:29:11
  * @FilePath: /test/search.go
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,6 +10,7 @@ package test
 
 import (
 	"fmt"
+	"runtime"
 	"testing"
 	"time"
 
@@ -28,6 +29,7 @@ func TestFindNumberWithWorkers(t *testing.T) {
 
 	t.Logf("len: %d\n", len(mySlice))
 
+	fmt.Printf("before search number gorintines: %d\n", runtime.NumGoroutine())
 	// tutorial.FindNumberWithWorkers(mySlice, 4958)
 	assert := assert.New(t)
 	var tests = []struct {
@@ -46,10 +48,14 @@ func TestFindNumberWithWorkers(t *testing.T) {
 		fmt.Printf("find %d : %v \n", test.target, result)
 		assert.Equal(result, test.expected)
 	}
+
+	fmt.Printf("after search number gorintines: %d\n", runtime.NumGoroutine())
 }
 
 func TestFind(t *testing.T) {
+	fmt.Printf("before search number gorintines: %d\n", runtime.NumGoroutine())
 	convey.Convey("TestFind should return true\n", t, func() {
 		convey.So(tutorial.FindNumberWithWorkers(mySlice, 4958), convey.ShouldBeTrue)
 	})
+	fmt.Printf("before search number gorintines: %d\n", runtime.NumGoroutine())
 }

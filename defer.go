@@ -2,7 +2,7 @@
  * @Author: LinkyPi trouble.linky@gmail.com
  * @Date: 2019-11-03 12:16:33
  * @LastEditors: LinkyPi trouble.linky@gmail.com
- * @LastEditTime: 2023-12-16 09:49:17
+ * @LastEditTime: 2024-01-04 11:56:49
  * @FilePath: /test/a.go
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -84,7 +84,7 @@ func f2() (x int) {
 func f3() (y int) {
 	x := 5
 	defer func() {
-		x++ // 修改的是x
+		x++ // 修改的是x,  不是返回值 y
 	}()
 	return x // 1. 返回值 = y = x = 5 2. defer修改的是x 3. 真正的返回
 }
@@ -101,7 +101,7 @@ func f5() (x int) {
 		x++
 		return x
 	}(x)
-	return 5 // 1.x = 5 2. defer x = 6 3  真正的返回
+	return 5 // 1.x = 5 2. defer x = 6 , 3  真正的返回
 }
 
 func f6() (x int) {
