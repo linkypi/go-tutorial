@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"sync"
 	"testing"
 )
@@ -25,4 +26,14 @@ func TestDeadLock1(t *testing.T) {
 	//bar <- 123
 	close(closing)
 	wg.Wait()
+}
+
+func TestDeadLock2(t *testing.T) {
+
+	ch := make(chan int)
+	// 无缓冲 channel 写入后没有消费导致阻塞, 消费端
+	ch <- 1
+
+	a := <-ch
+	fmt.Println("num:", a)
 }

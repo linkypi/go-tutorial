@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// 表示 proto 文件生成后存放在哪个目录哪个包中, "." 表示当前目录
+option go_package = ".;pb";
+
+service Greeter {
+  rpc SayHello(HelloRequest) returns (HelloReply) {}
+  // 客户端流式 RPC
+  rpc ClientStreamPing(stream PingRequest) returns (PingReply) {}
+  // 服务端流式 RPC
+  rpc ServerStreamPing( PingRequest) returns (stream PingReply) {}
+  // 双向流式 RPC
+  rpc BothStreamPing(stream PingRequest) returns (stream PingReply) {}
+}
+message PingRequest{
+  string id = 1;
+}
+message PingReply {
+  string message = 1;
+  int32 code = 2;
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+  int32 code = 2;
+}
+

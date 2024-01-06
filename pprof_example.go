@@ -22,11 +22,12 @@ import (
 // 2. 启动完成后在页面查看 pprof 页面: http://localhost:6060/debug/pprof/
 
 //  1. 使用 web 图表查看内存分配, 首先保存相关文件, 然后启动 web 页面查看
-// go tool pprof http://localhost:6060/debug/pprof/allos
+// go tool pprof http://localhost:6060/debug/pprof/allos 进入pprof命令行后可以直接使用 web 通过浏览器查看
+// 若需要在浏览器查看所有指标信息则需要在命令行执行, 其中 xxx.inuse_space.001.pb.gz 由上方命令生成:
 // go tool pprof -http=localhost:8081 /Users/leo/pprof/pprof.alloc_objects.alloc_space.inuse_objects.inuse_space.001.pb.gz
 
 // 2. 使用 web 图表查看 goroutine , 首先保存相关文件, 然后启动 web 页面查看
-// go tool pprof http://localhost:6060/debug/pprof/goroutine
+// go tool pprof http://localhost:6060/debug/pprof/goroutine 进入pprof命令行后可以直接使用 web 通过浏览器查看
 // go tool pprof -http=localhost:8082 /Users/leo/pprof/pprof.goroutine.001.pb.gz
 func main() {
 
